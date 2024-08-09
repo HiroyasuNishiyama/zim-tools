@@ -100,9 +100,9 @@ void create(const std::string& originFilename, const std::string& outFilename, b
 {
   zim::Archive origin(originFilename);
   zim::writer::Creator zimCreator;
+  auto lang = origin.getMetadata("Language");
   zimCreator.configVerbose(true)
-            // [TODO] Use the correct language
-            .configIndexing(withFtIndexFlag, "eng")
+            .configIndexing(withFtIndexFlag, lang)
             .configClusterSize(2048*1024)
             .configNbWorkers(nbThreads);
 
